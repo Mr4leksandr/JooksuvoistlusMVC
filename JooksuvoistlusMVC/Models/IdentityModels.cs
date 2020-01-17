@@ -29,5 +29,7 @@ namespace JooksuvoistlusMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<JooksuvoistlusMVC.Models.RunnersData> RunnersDatas { get; set; }
     }
 }
