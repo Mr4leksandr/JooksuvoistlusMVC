@@ -14,6 +14,30 @@ namespace JooksuvoistlusMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult RunnersList()
+        {
+            return View(db.RunnersDatas.ToList());
+        }
+
+        public ActionResult CreateRunner()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime")] RunnersData runnersData)
+        {
+            if (ModelState.IsValid)
+            {
+                db.RunnersDatas.Add(runnersData);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(runnersData);
+        }
+
         // GET: RunnersDatas
         public ActionResult Index()
         {

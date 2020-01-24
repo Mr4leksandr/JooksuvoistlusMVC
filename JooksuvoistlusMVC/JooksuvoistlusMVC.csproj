@@ -242,6 +242,8 @@
     <Content Include="Views\RunnersDatas\Details.cshtml" />
     <Content Include="Views\RunnersDatas\Edit.cshtml" />
     <Content Include="Views\RunnersDatas\Index.cshtml" />
+    <Content Include="Views\RunnersDatas\CreateRunner.cshtml" />
+    <Content Include="Views\RunnersDatas\RunnersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
