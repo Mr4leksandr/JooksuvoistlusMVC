@@ -14,6 +14,63 @@ namespace JooksuvoistlusMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [HttpPost, ActionName("RemoveRunner")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveRunnerConfirmed(int id)
+        {
+            RunnersData runnersData = db.RunnersDatas.Find(id);
+            db.RunnersDatas.Remove(runnersData);
+            db.SaveChanges();
+            return RedirectToAction("RunnersList");
+        }
+
+        public ActionResult RemoveRunner(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RunnersData runnersData = db.RunnersDatas.Find(id);
+            if (runnersData == null)
+            {
+                return HttpNotFound();
+            }
+            return View(runnersData);
+        }
+
+        public ActionResult EditRunner(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RunnersData runnersData = db.RunnersDatas.Find(id);
+            if (runnersData == null)
+            {
+                return HttpNotFound();
+            }
+            return View(runnersData);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime,Break")] RunnersData runnersData)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(runnersData).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("RunnersList");
+            }
+            return View(runnersData);
+        }
+
+        public ActionResult AwardingList()
+        {
+
+            return View(db.RunnersDatas.OrderBy(r => r.FinishTime));
+        }
+
         public ActionResult RunnersList()
         {
             return View(db.RunnersDatas.ToList());
@@ -26,13 +83,13 @@ namespace JooksuvoistlusMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime")] RunnersData runnersData)
+        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime,Break")] RunnersData runnersData)
         {
             if (ModelState.IsValid)
             {
                 db.RunnersDatas.Add(runnersData);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("RunnersList");
             }
 
             return View(runnersData);

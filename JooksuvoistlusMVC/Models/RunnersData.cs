@@ -14,8 +14,10 @@ namespace JooksuvoistlusMVC.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Display(Name = "Staring Time")]
-        public int StartingTime { get; set; }
+        public string StartingTime { get; set; } = "00.00.00";
         [Display(Name = "Finish Time")]
-        public int FinishTime { get; set; }
+        public string FinishTime { get; set; }
+        [Display(Name = "2. Breaks")]
+        public bool Break { get; set; }
     }
 }

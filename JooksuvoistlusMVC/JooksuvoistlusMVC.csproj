@@ -174,6 +174,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001240640008_InitialCreate.cs" />
+    <Compile Include="Migrations\202001240640008_InitialCreate.Designer.cs">
+      <DependentUpon>202001240640008_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001240741110_Migration.cs" />
+    <Compile Include="Migrations\202001240741110_Migration.Designer.cs">
+      <DependentUpon>202001240741110_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001240857001_Migratsio.cs" />
+    <Compile Include="Migrations\202001240857001_Migratsio.Designer.cs">
+      <DependentUpon>202001240857001_Migratsio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -243,7 +256,10 @@
     <Content Include="Views\RunnersDatas\Edit.cshtml" />
     <Content Include="Views\RunnersDatas\Index.cshtml" />
     <Content Include="Views\RunnersDatas\CreateRunner.cshtml" />
+    <Content Include="Views\RunnersDatas\AwardingList.cshtml" />
     <Content Include="Views\RunnersDatas\RunnersList.cshtml" />
+    <Content Include="Views\RunnersDatas\EditRunner.cshtml" />
+    <Content Include="Views\RunnersDatas\RemoveRunner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,6 +276,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202001240640008_InitialCreate.resx">
+      <DependentUpon>202001240640008_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001240741110_Migration.resx">
+      <DependentUpon>202001240741110_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001240857001_Migratsio.resx">
+      <DependentUpon>202001240857001_Migratsio.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

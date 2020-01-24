@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<JooksuvoistlusMVC.Models.RunnersData>
 
 @{
-    ViewBag.Title = "RunnersList";
+    ViewBag.Title = "AwardingList";
 }
 
-<h2>All Runners List</h2>
-
-<p>
-    @Html.ActionLink("Register for Contest", "CreateRunner")
-</p>
+<h2>Awarding</h2>
 <table class="table">
     <tr>
         <th>
@@ -44,10 +40,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Break)
-        </td>
-        <td>
-            @Html.ActionLink("Edit Runner", "EditRunner", new { id=item.Id }) |
-            @Html.ActionLink("Remove", "RemoveRunner", new { id=item.Id })
         </td>
     </tr>
 }
