@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #222;
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,8 +25,18 @@ textarea {
     max-width: 280px;
 }
 
-.image{
-    height: 25px;
+.navbar-inverse {
+    background-color: black;
+    border-color: white;
+}
+
+.jumbotron {
+    color: grey;
+    background-color: black;
+}
+
+.image {
+    height: 51px;
     margin-right: auto;
     margin-left: auto;
     display: inline;

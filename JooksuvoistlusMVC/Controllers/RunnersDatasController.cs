@@ -23,7 +23,7 @@ namespace JooksuvoistlusMVC.Controllers
             db.SaveChanges();
             return RedirectToAction("RunnersList");
         }
-
+        [Authorize]
         public ActionResult RemoveRunner(int? id)
         {
             if (id == null)
@@ -38,6 +38,7 @@ namespace JooksuvoistlusMVC.Controllers
             return View(runnersData);
         }
 
+        [Authorize]
         public ActionResult EditRunner(int? id)
         {
             if (id == null)
@@ -67,8 +68,11 @@ namespace JooksuvoistlusMVC.Controllers
 
         public ActionResult AwardingList()
         {
-
-            return View(db.RunnersDatas.OrderBy(r => r.FinishTime));
+            var model = db.RunnersDatas
+                .Where(r => r.Break == true)
+                .OrderBy(r => r.FinishTime)
+                .ToList();
+            return View(model);
         }
 
         public ActionResult RunnersList()

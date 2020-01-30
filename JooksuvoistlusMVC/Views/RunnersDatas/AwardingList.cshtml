@@ -19,9 +19,6 @@
         <th>
             @Html.DisplayNameFor(model => model.FinishTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Break)
-        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -37,9 +34,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FinishTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Break)
         </td>
     </tr>
 }
