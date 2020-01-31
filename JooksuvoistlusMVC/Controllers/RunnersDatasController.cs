@@ -23,6 +23,16 @@ namespace JooksuvoistlusMVC.Controllers
             db.SaveChanges();
             return RedirectToAction("RunnersList");
         }
+
+        public ActionResult FirstPlace()
+        {
+            var best = db.RunnersDatas
+                .Where(r => r.Break == true)
+                .OrderBy(r => r.FinishTime)
+                .ToList();
+            return PartialView(best.First());
+        }
+
         [Authorize]
         public ActionResult RemoveRunner(int? id)
         {
