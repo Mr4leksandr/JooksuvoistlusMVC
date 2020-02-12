@@ -43,13 +43,14 @@ textarea {
 }
 
 .FirstPlace {
-    background-color: gold;
+    background-color: gold !important;
     margin-top: 20px;
     margin-bottom: 30px;
     padding-top: 1px;
     padding-left: 10px;
     padding-bottom: 15px;
     border-radius: 5px;
+    border: 2px solid yellow;
     color: black;
     font: bold;
 }
