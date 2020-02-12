@@ -4,13 +4,9 @@
     ViewBag.Title = "AwardingList";
 }
 
-<h2>Awarding</h2>
+@Html.Action("FirstPlaces", "RunnersDatas");
 
-<div class="first">
-    <h3>First Place</h3>
-    @Html.Action("FirstPlace", "RunnersDatas")
-</div>
-
+<h1>Other Places</h1>
 <table class="table">
     <tr>
         <th>
@@ -27,21 +23,22 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartingTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinishTime)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishTime)
+            </td>
+        </tr>
+    }
 
 </table>

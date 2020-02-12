@@ -24,13 +24,13 @@ namespace JooksuvoistlusMVC.Controllers
             return RedirectToAction("RunnersList");
         }
 
-        public ActionResult FirstPlace()
+        public ActionResult FirstPlaces()
         {
             var best = db.RunnersDatas
                 .Where(r => r.Break == true)
                 .OrderBy(r => r.FinishTime)
                 .ToList();
-            return PartialView(best.First());
+            return View(best.First());
         }
 
         [Authorize]
