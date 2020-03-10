@@ -71,7 +71,7 @@ namespace JooksuvoistlusMVC.Controllers
             {
                 db.Entry(runnersData).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("RunnersList");
+                return RedirectToAction("Participants");
             }
             return View(runnersData);
         }
@@ -83,6 +83,11 @@ namespace JooksuvoistlusMVC.Controllers
                 .OrderBy(r => r.FinishTime)
                 .ToList();
             return View(model);
+        }
+
+        public ActionResult Participants()
+        {
+            return View(db.RunnersDatas.ToList());
         }
 
         public ActionResult RunnersList()

@@ -4,7 +4,7 @@
     ViewBag.Title = "EditRunner";
 }
 
-<h2>Edit @Model.FirstName @Model.LastName Data</h2>
+<h2>@Model.FirstName @Model.LastName</h2>
 
 
 @using (Html.BeginForm())
@@ -67,7 +67,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "RunnersList")
+    @Html.ActionLink("Back to List", "Participants")
 </div>
 
 @section Scripts {
