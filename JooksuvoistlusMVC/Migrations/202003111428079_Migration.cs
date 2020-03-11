@@ -3,7 +3,7 @@ namespace JooksuvoistlusMVC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Migration : DbMigration
     {
         public override void Up()
         {
@@ -37,8 +37,9 @@ namespace JooksuvoistlusMVC.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(),
                         LastName = c.String(),
-                        StartingTime = c.Int(nullable: false),
-                        FinishTime = c.Int(nullable: false),
+                        StartingTime = c.DateTime(),
+                        FinishTime = c.DateTime(),
+                        Break = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

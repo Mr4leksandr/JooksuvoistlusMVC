@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace JooksuvoistlusMVC.Models
 {
@@ -14,9 +16,10 @@ namespace JooksuvoistlusMVC.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Display(Name = "Staring Time")]
-        public int? StartingTime { get;  set; }
+        [DefaultValue(0)]
+        public DateTime? StartingTime { get;  set; }
         [Display(Name = "Finish Time")]
-        public int? FinishTime { get; set; }
+        public DateTime? FinishTime { get; set; }
         [Display(Name = "2. Breaks")]
         public bool Break { get; set; }
     }

@@ -71,7 +71,7 @@ namespace JooksuvoistlusMVC.Controllers
             {
                 db.Entry(runnersData).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Participants");
+                return RedirectToAction("RunnersList");
             }
             return View(runnersData);
         }
@@ -85,33 +85,30 @@ namespace JooksuvoistlusMVC.Controllers
             return View(model);
         }
 
-        public ActionResult Participants()
-        {
-            return View(db.RunnersDatas.ToList());
-        }
-
         public ActionResult RunnersList()
         {
+            
             return View(db.RunnersDatas.ToList());
         }
 
-        public ActionResult CreateRunner()
+        public ActionResult StartRace()
         {
-            return View();
+            var model = db.RunnersDatas
+                .Where(r => r.StartingTime == null)
+                .ToList();
+            foreach (var runnersData in model)
+            {
+                runnersData.StartingTime = DateTime.Now;
+                db.Entry(runnersData).State = EntityState.Modified;
+                db.SaveChanges();   
+            }
+     
+            return RedirectToAction("RunnersList");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime,Break")] RunnersData runnersData)
+        public ActionResult Create()
         {
-            if (ModelState.IsValid)
-            {
-                db.RunnersDatas.Add(runnersData);
-                db.SaveChanges();
-                return RedirectToAction("RunnersList");
-            }
-
-            return View(runnersData);
+            return View();
         }
 
         // GET: RunnersDatas
@@ -136,9 +133,23 @@ namespace JooksuvoistlusMVC.Controllers
         }
 
         // GET: RunnersDatas/Create
-        public ActionResult Create()
+        public ActionResult CreateRunner()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime")] RunnersData runnersData)
+        {
+            if (ModelState.IsValid)
+            {
+                db.RunnersDatas.Add(runnersData);
+                db.SaveChanges();
+                return RedirectToAction("RunnersList");
+            }
+
+            return View(runnersData);
         }
 
         // POST: RunnersDatas/Create
@@ -152,7 +163,7 @@ namespace JooksuvoistlusMVC.Controllers
             {
                 db.RunnersDatas.Add(runnersData);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Participants");
             }
 
             return View(runnersData);

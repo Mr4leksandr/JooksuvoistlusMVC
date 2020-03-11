@@ -174,21 +174,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001240640008_InitialCreate.cs" />
-    <Compile Include="Migrations\202001240640008_InitialCreate.Designer.cs">
-      <DependentUpon>202001240640008_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001240741110_Migration.cs" />
-    <Compile Include="Migrations\202001240741110_Migration.Designer.cs">
-      <DependentUpon>202001240741110_Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001240857001_Migratsio.cs" />
-    <Compile Include="Migrations\202001240857001_Migratsio.Designer.cs">
-      <DependentUpon>202001240857001_Migratsio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003100844212_TimeMigration.cs" />
-    <Compile Include="Migrations\202003100844212_TimeMigration.Designer.cs">
-      <DependentUpon>202003100844212_TimeMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202003111428079_Migration.cs" />
+    <Compile Include="Migrations\202003111428079_Migration.Designer.cs">
+      <DependentUpon>202003111428079_Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -265,7 +253,6 @@
     <Content Include="Views\RunnersDatas\EditRunner.cshtml" />
     <Content Include="Views\RunnersDatas\RemoveRunner.cshtml" />
     <Content Include="Views\RunnersDatas\FirstPlaces.cshtml" />
-    <Content Include="Views\RunnersDatas\Participants.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,17 +271,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001240640008_InitialCreate.resx">
-      <DependentUpon>202001240640008_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001240741110_Migration.resx">
-      <DependentUpon>202001240741110_Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001240857001_Migratsio.resx">
-      <DependentUpon>202001240857001_Migratsio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003100844212_TimeMigration.resx">
-      <DependentUpon>202003100844212_TimeMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003111428079_Migration.resx">
+      <DependentUpon>202003111428079_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

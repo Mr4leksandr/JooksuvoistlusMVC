@@ -10,7 +10,6 @@ namespace JooksuvoistlusMVC.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "JooksuvoistlusMVC.Models.ApplicationDbContext";
         }
 
         protected override void Seed(JooksuvoistlusMVC.Models.ApplicationDbContext context)
