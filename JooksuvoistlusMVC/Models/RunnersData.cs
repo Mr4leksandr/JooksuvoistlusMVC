@@ -16,11 +16,12 @@ namespace JooksuvoistlusMVC.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Display(Name = "Staring Time")]
-        [DefaultValue(0)]
-        public DateTime? StartingTime { get;  set; }
+        public DateTime? StartingTime { get; set; }
+        [Display(Name = "First Break")]
+        public DateTime? FirstBreak { get; set; }
+        [Display(Name = "Second Break")]
+        public DateTime? SecondBreak { get; set; }
         [Display(Name = "Finish Time")]
         public DateTime? FinishTime { get; set; }
-        [Display(Name = "2. Breaks")]
-        public bool Break { get; set; }
     }
 }

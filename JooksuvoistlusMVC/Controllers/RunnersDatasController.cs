@@ -24,14 +24,14 @@ namespace JooksuvoistlusMVC.Controllers
             return RedirectToAction("RunnersList");
         }
 
-        public ActionResult FirstPlaces()
-        {
-            var best = db.RunnersDatas
-                .Where(r => r.Break == true)
-                .OrderBy(r => r.FinishTime)
-                .ToList();
-            return View(best.First());
-        }
+        //public ActionResult FirstPlaces()
+        //{
+        //    var best = db.RunnersDatas
+        //        .Where(r => r.Break == true)
+        //        .OrderBy(r => r.FinishTime)
+        //        .ToList();
+        //    return View(best.First());
+        //}
 
         [Authorize]
         public ActionResult RemoveRunner(int? id)
@@ -76,19 +76,36 @@ namespace JooksuvoistlusMVC.Controllers
             return View(runnersData);
         }
 
-        public ActionResult AwardingList()
+        //public ActionResult AwardingList()
+        //{
+        //    var model = db.RunnersDatas
+        //        .Where(r => r.Break == true)
+        //        .OrderBy(r => r.FinishTime)
+        //        .ToList();
+        //    return View(model);
+        //}
+
+        public ActionResult Race()
         {
-            var model = db.RunnersDatas
-                .Where(r => r.Break == true)
-                .OrderBy(r => r.FinishTime)
-                .ToList();
-            return View(model);
+            return View(db.RunnersDatas.ToList());
         }
 
         public ActionResult RunnersList()
         {
-            
             return View(db.RunnersDatas.ToList());
+        }
+
+        public ActionResult FirstBreak(RunnersData runnersData)
+        {
+            var model = db.RunnersDatas
+                .Where(r => r.StartingTime != null && r.FirstBreak == null)
+                .ToList();
+
+            runnersData.FirstBreak = DateTime.Now;
+            db.Entry(runnersData).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Race");
         }
 
         public ActionResult StartRace()
@@ -100,10 +117,10 @@ namespace JooksuvoistlusMVC.Controllers
             {
                 runnersData.StartingTime = DateTime.Now;
                 db.Entry(runnersData).State = EntityState.Modified;
-                db.SaveChanges();   
+                db.SaveChanges();
             }
-     
-            return RedirectToAction("RunnersList");
+
+            return RedirectToAction("Race");
         }
 
         public ActionResult Create()
@@ -140,7 +157,7 @@ namespace JooksuvoistlusMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateRunner([Bind(Include = "Id,FirstName,LastName,StartingTime,FinishTime")] RunnersData runnersData)
+        public ActionResult CreateRunner(RunnersData runnersData)
         {
             if (ModelState.IsValid)
             {
