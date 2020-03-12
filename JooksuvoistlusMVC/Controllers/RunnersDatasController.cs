@@ -95,16 +95,48 @@ namespace JooksuvoistlusMVC.Controllers
             return View(db.RunnersDatas.ToList());
         }
 
-        public ActionResult FirstBreak(RunnersData runnersData)
+        public ActionResult FinishTime(RunnersData runnersData)
         {
             var model = db.RunnersDatas
-                .Where(r => r.StartingTime != null && r.FirstBreak == null)
+                .Where(r => r.FinishTime == null)
                 .ToList();
 
-            runnersData.FirstBreak = DateTime.Now;
+            runnersData.FinishTime = DateTime.Now;
             db.Entry(runnersData).State = EntityState.Modified;
             db.SaveChanges();
 
+            return RedirectToAction("Race");
+        }
+
+        public ActionResult SecondBreak(RunnersData runnersData)
+        {
+            var model = db.RunnersDatas
+                .Where(r => r.SecondBreak == null)
+                .ToList();
+
+            runnersData.SecondBreak = DateTime.Now;
+            db.Entry(runnersData).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Race");
+        }
+
+        public ActionResult FirstBreak(RunnersData runnersData)
+        {
+            if (runnersData.StartingTime == null)
+            {
+                return RedirectToAction("Race");
+            }
+            else if (runnersData.StartingTime != null)
+            {
+                var model = db.RunnersDatas
+                    .Where(r => r.FirstBreak == null)
+                    .ToList();
+
+                runnersData.FirstBreak = DateTime.Now;
+                db.Entry(runnersData).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Race");
         }
 
