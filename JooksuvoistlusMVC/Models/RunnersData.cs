@@ -15,13 +15,14 @@ namespace JooksuvoistlusMVC.Models
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name = "Staring Time")]
+        [Display(Name = "Staring Time"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? StartingTime { get; set; }
-        [Display(Name = "First Break")]
+        [Display(Name = "First Break"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? FirstBreak { get; set; }
-        [Display(Name = "Second Break")]
+        [Display(Name = "Second Break"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? SecondBreak { get; set; }
-        [Display(Name = "Finish Time")]
+        [Display(Name = "Finish Time"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? FinishTime { get; set; }
     }
+
 }

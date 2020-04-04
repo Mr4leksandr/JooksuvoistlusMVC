@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -24,14 +25,14 @@ namespace JooksuvoistlusMVC.Controllers
             return RedirectToAction("RunnersList");
         }
 
-        //public ActionResult FirstPlaces()
-        //{
-        //    var best = db.RunnersDatas
-        //        .Where(r => r.Break == true)
-        //        .OrderBy(r => r.FinishTime)
-        //        .ToList();
-        //    return View(best.First());
-        //}
+        public ActionResult FirstPlaces(RunnersData runnersData)
+        {
+            var best = db.RunnersDatas
+                .Where(r => r.FinishTime != null)
+                .OrderBy(r => r.FinishTime)
+                .ToList();
+            return View(best.First());
+        }
 
         [Authorize]
         public ActionResult RemoveRunner(int? id)
@@ -76,18 +77,21 @@ namespace JooksuvoistlusMVC.Controllers
             return View(runnersData);
         }
 
-        //public ActionResult AwardingList()
-        //{
-        //    var model = db.RunnersDatas
-        //        .Where(r => r.Break == true)
-        //        .OrderBy(r => r.FinishTime)
-        //        .ToList();
-        //    return View(model);
-        //}
+        public ActionResult AwardingList()
+        {
+            var model = db.RunnersDatas
+                .Where(r => r.FinishTime != null)
+                .OrderBy(r => r.FinishTime)
+                .ToList();
+            return View(model);
+        }
 
         public ActionResult Race()
         {
-            return View(db.RunnersDatas.ToList());
+            var model = db.RunnersDatas
+                .Where(r => r.StartingTime != null)
+                .ToList();
+            return View(model);
         }
 
         public ActionResult RunnersList()
@@ -95,11 +99,9 @@ namespace JooksuvoistlusMVC.Controllers
             return View(db.RunnersDatas.ToList());
         }
 
-        public ActionResult FinishTime(RunnersData runnersData)
+        public ActionResult FinishTime(int? id)
         {
-            var model = db.RunnersDatas
-                .Where(r => r.FinishTime == null)
-                .ToList();
+            RunnersData runnersData = db.RunnersDatas.Find(id);
 
             runnersData.FinishTime = DateTime.Now;
             db.Entry(runnersData).State = EntityState.Modified;
@@ -108,11 +110,9 @@ namespace JooksuvoistlusMVC.Controllers
             return RedirectToAction("Race");
         }
 
-        public ActionResult SecondBreak(RunnersData runnersData)
+        public ActionResult SecondBreak(int? id)
         {
-            var model = db.RunnersDatas
-                .Where(r => r.SecondBreak == null)
-                .ToList();
+            RunnersData runnersData = db.RunnersDatas.Find(id);
 
             runnersData.SecondBreak = DateTime.Now;
             db.Entry(runnersData).State = EntityState.Modified;
@@ -121,22 +121,14 @@ namespace JooksuvoistlusMVC.Controllers
             return RedirectToAction("Race");
         }
 
-        public ActionResult FirstBreak(RunnersData runnersData)
+        public ActionResult FirstBreak(int? id)
         {
-            if (runnersData.StartingTime == null)
-            {
-                return RedirectToAction("Race");
-            }
-            else if (runnersData.StartingTime != null)
-            {
-                var model = db.RunnersDatas
-                    .Where(r => r.FirstBreak == null)
-                    .ToList();
+            RunnersData runnersData = db.RunnersDatas.Find(id);
 
-                runnersData.FirstBreak = DateTime.Now;
-                db.Entry(runnersData).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+            runnersData.FirstBreak = DateTime.Now;
+            db.Entry(runnersData).State = EntityState.Modified;
+            db.SaveChanges();
+
             return RedirectToAction("Race");
         }
 

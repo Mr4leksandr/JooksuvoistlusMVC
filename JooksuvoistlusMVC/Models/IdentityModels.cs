@@ -20,6 +20,8 @@ namespace JooksuvoistlusMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        internal object As;
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
